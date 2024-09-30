@@ -1,0 +1,34 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Django specific
+db.sqlite3
+*.log
+*.pot
+*.pyc
+*.mo
+*.env
+*.sqlite3
+
+# Virtual environments
+venv/
+env/
+*.egg-info/
+.eggs/
+
+# Static files
+/static/
+media/
+
+# VS Code settings
+.vscode/
+
+# Django migrations
+**/migrations/*
+
+# Operating System files
+.DS_Store
+Thumbs.db

@@ -2,11 +2,11 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'your_secret_key'  # Replace with a secure secret key
+SECRET_KEY = 'your_secret_key'  # Make sure to use a strong key
 
 DEBUG = True
 
-ALLOWED_HOSTS = []  # Add your allowed hosts if needed, e.g. ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',  # Ensure your custom app is included here
+    'myapp',  # Include your app here
 ]
 
 MIDDLEWARE = [
@@ -33,8 +33,8 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Ensure your templates folder is properly configured
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Template directory
+        'APP_DIRS': True,  # Enables looking for templates in app directories
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

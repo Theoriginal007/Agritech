@@ -1,0 +1,253 @@
+<!-- myapp/templates/myapp/item_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+        }
+
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .search-container {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            padding: 7px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 250px;
+        }
+
+        .search-container button {
+            padding: 7px 15px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+
+        .item-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .item-list li {
+            padding: 15px;
+            background-color: white;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-list li:hover {
+            background-color: #f9f9f9;
+        }
+
+        .item-list a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .item-list a:hover {
+            text-decoration: underline;
+        }
+
+        .price {
+            color: #888;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            padding: 8px 16px;
+            text-decoration: none;
+            background-color: #f4f4f4;
+            color: #333;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+            border-radius: 4px;
+        }
+
+        .pagination a:hover {
+            background-color: #ddd;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .category-filter {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-filter select {
+            padding: 7px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Online Item Shop</h1>
+        <p>Find your desired items below!</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Categories</a>
+        <a href="#">Cart</a>
+        <a href="#">Contact</a>
+        <a href="#">About</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <form method="GET" action="">
+                <input type="text" name="search" placeholder="Search items...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <label for="category">Filter by Category: </label>
+            <select name="category" id="category">
+                <option value="all">All</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="home">Home Appliances</option>
+                <option value="books">Books</option>
+            </select>
+        </div>
+
+        <!-- Item List -->
+        <ul class="item-list">
+            {% for item in items %}
+            <li>
+                <div>
+                    <a href="{% url 'item_detail' item.id %}">{{ item.name }}</a>
+                    <p class="price">${{ item.price }}</p>
+                </div>
+                <button type="button" onclick="addToCart('{{ item.id }}')">Add to Cart</button>
+            </li>
+            {% empty %}
+            <li>No items available.</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#">&laquo;</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">&raquo;</a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Online Item Shop. All rights reserved.</p>
+        <p>Follow us on 
+            <a href="#" style="color: #4CAF50;">Twitter</a>, 
+            <a href="#" style="color: #4CAF50;">Facebook</a>, 
+            <a href="#" style="color: #4CAF50;">Instagram</a>
+        </p>
+    </footer>
+
+    <!-- JavaScript for Cart Functionality -->
+    <script>
+        function addToCart(itemId) {
+            // This function will handle adding items to the cart.
+            alert('Item ' + itemId + ' added to cart!');
+        }
+
+        // Handling Category Filter (Placeholder - Add Django backend logic for filtering)
+        document.getElementById('category').addEventListener('change', function () {
+            const selectedCategory = this.value;
+            alert('Filter by category: ' + selectedCategory);
+            // Add logic to filter items based on selected category
+        });
+    </script>
+</body>
+
+</html>

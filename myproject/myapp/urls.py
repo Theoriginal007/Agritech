@@ -33,3 +33,8 @@ from . import views
 urlpatterns = [
     path('items/', views.item_list, name='item_list'),  # URL route for the item list
 ]
+urlpatterns = [
+    path('', views.home, name='home'),
+    path('signup/', views.signup_view, name='signup'),  # URL for signup page
+    path('items/', views.item_list, name='item_list'),  # URL for item list
+]

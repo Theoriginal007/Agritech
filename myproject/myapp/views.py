@@ -21,3 +21,6 @@ def home(request):
         </p>
     """)
 
+
+def signup_view(request):
+    return render(request, 'myapp/signup.html')

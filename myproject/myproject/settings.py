@@ -1,13 +1,12 @@
-# settings.py
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'your_secret_key'  # Change this to a strong key
+SECRET_KEY = 'your_secret_key'  # Replace with a secure secret key
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = []  # Add your allowed hosts if needed, e.g. ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,7 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myapp',  # Include your app here
+    'myapp',  # Ensure your custom app is included here
 ]
 
 MIDDLEWARE = [
@@ -34,7 +33,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Template directory
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Ensure your templates folder is properly configured
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,23 +81,3 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-
-INSTALLED_APPS = [
-    # Other installed apps
-    'myapp',
-]
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # This is fine as long as templates are in app folders
-        'APP_DIRS': True,  # This needs to be set to True to find app templates
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]

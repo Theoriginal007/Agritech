@@ -1,8 +1,6 @@
-# myproject/urls.py
-
 from django.contrib import admin
 from django.urls import path
-from .views import home, signup_view, item_list_view  # Import the new view
+from .views import home, signup_view, item_list_view  # Import the new views
 
 urlpatterns = [
     path('admin/', admin.site.urls),

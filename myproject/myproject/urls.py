@@ -1,19 +1,12 @@
+# myproject/urls.py
+
 from django.contrib import admin
-from django.urls import path, include  # Import include
-from . import views
-from .views import home 
+from django.urls import path
+from .views import home, signup_view, item_list_view  # Import the new view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('myapp.urls')),  # Include URLs from your app
-    path('myapp/', include('myapp.urls')),  # Include your app's URLs
-   path('', home, name='home'),  # This is where 'home' is used
+    path('', home, name='home'),  # Home page URL
+    path('signup/', signup_view, name='signup'),  # Signup page URL
+    path('items/', item_list_view, name='item_list'),  # URL for item list
 ]
-
-from . import views
-
-urlpatterns = [
-    # Other URL patterns...
-    path('signup/', views.signup_view, name='signup'),  # Make sure this exists
-]
-

@@ -20,3 +20,16 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     # Other URL patterns...
 ]
+# urls.py
+from django.urls import path
+from . import views  # Make sure this imports the correct views file
+
+urlpatterns = [
+    path('items/', views.item_list, name='item_list'),  # Add this line for item list
+]
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('items/', views.item_list, name='item_list'),  # URL route for the item list
+]

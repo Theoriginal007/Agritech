@@ -47,3 +47,8 @@ def signup_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'myapp/signup.html', {'form': form})
+from django.shortcuts import render
+
+def item_list(request):
+    # Rendering the correct template
+    return render(request, 'myapp/item_list.html')

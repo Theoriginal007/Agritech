@@ -83,3 +83,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+INSTALLED_APPS = [
+    # Other installed apps
+    'myapp',
+]
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],  # This is fine as long as templates are in app folders
+        'APP_DIRS': True,  # This needs to be set to True to find app templates
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]

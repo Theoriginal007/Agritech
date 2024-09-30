@@ -7,6 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Agri-Inputs Marketplace: The best platform connecting farmers with agricultural suppliers for quality seeds, fertilizers, pesticides, and equipment.">
+    <meta name="keywords" content="agriculture, marketplace, seeds, fertilizers, pesticides, equipment, suppliers">
     <title>Agri-Inputs Marketplace</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -265,7 +267,8 @@
             <a href="{% url 'logout' %}">Logout</a>
             {% else %}
             <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'signup' %}">Signup</a>
+            <a href="{% url 'myapp:signup' %}">Signup</a>
+
             {% endif %}
         </div>
     </nav>
@@ -313,14 +316,17 @@
                     <p>Category: <strong>{{ item.category }}</strong></p>
 
                     <!-- Reviews -->
-                    <div class="reviews">
-                        <span class="stars">
-                            {% for i in range(item.rating) %}
-                            &#9733;
-                            {% endfor %}
-                        </span>
-                        ({{ item.reviews_count }} reviews)
-                    </div>
+                    {% for item in items %}
+    <div class="reviews">
+        <span class="stars">
+            {% for i in item.rating_range %}
+                &#9733;
+            {% endfor %}
+        </span>
+        ({{ item.reviews_count }} reviews)
+    </div>
+{% endfor %}
+
                 </div>
                 <div>
                     <button class="add-to-cart-btn">Add to Cart</button>
@@ -336,37 +342,19 @@
             <a href="?page={{ items.previous_page_number }}">&laquo; Prev</a>
             {% endif %}
 
-            <span class="active">{{ items.number }}</span>
+            {% for num in items.paginator.page_range %}
+            <a href="?page={{ num }}" class="{% if items.number == num %}active{% endif %}">{{ num }}</a>
+            {% endfor %}
 
             {% if items.has_next %}
             <a href="?page={{ items.next_page_number }}">Next &raquo;</a>
             {% endif %}
         </div>
-
     </div>
 
     <footer>
-        <p>&copy; 2024 Agri-Inputs Marketplace. All Rights Reserved.</p>
+        &copy; 2024 Agri-Inputs Marketplace. All rights reserved.
     </footer>
-
-    <script>
-        // Cart count
-        let cartCount = 0;
-        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-            button.addEventListener('click', function () {
-                cartCount++;
-                document.getElementById('cart-count').innerText = cartCount;
-            });
-        });
-
-        // Modal functionality for reviews or details can be added here as needed.
-    </script>
-
 </body>
 
 </html>
-<span class="stars">
-    {% for _ in item.rating|times %}
-        &#9733;
-    {% endfor %}
-</span>
